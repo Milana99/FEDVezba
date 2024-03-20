@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Korpa</h1>
+    </div>
+    <div class="row">
+        <div class="col-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Slika</th>
+                        <th scope="col">Naziv</th>
+                        <th scope="col">Jedinicna cena</th>
+                        <th scope="col">Kolicina</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of cart.items">
+                        <td><img width="100px" class="img-fluid" src="assets/images/{{c.game.imageURL}}" /></td>
+                        <td><a href="#" [routerLink]="['/gameDetails', c.game.id]">{{c.game.name}}</a></td>
+                        <td>{{c.game.price |
+                            currency:'':"" }} RSD</td>
+                        <td [ngClass]="{'text-danger': !c.available}">{{c.count}}</td>
+                        <td>{{c.count*c.game.price |
+                            currency:'':"" }} RSD</td>
+                        <td><button class="btn btn-primary fa fa-remove" (click)="onDelete(c)"></button></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class=" col-3">
+            <form style="border: 1px solid black; padding: 10px;" [formGroup]="form">
+                <div class="form-group">
+                    <label for="ime">Ime i prezime</label>
+                    <input formControlName="name" type="text" class="form-control" id="ime">
+
+                </div>
+                <div class="form-group">
+                    <label for="adresa">Adresa</label>
+                    <input formControlName="address" type="text" class="form-control" id="adresa">
+
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input formControlName="e_mail" type="email" class="form-control" id="email">
+
+                </div>
+                <div class="form-group">
+                    <label for="tel">Telefon</label>
+                    <input formControlName="tel" type="text" class="form-control" id="tel">
+
+                </div>
+
+                <button (click)="onOrder()" [disabled]="form.invalid" type="submit"
+                    class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

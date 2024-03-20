@@ -1,0 +1,78 @@
+<div class="container">
+    <div class="row">
+        <h1 class="text-center">Catan</h1>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="row d-flex justify-content-center">
+                <img style=" width: 50%;" class="img-fluid float-center" src="assets/images/{{game.imageURL}}">
+            </div>
+            <div class="row d-flex justify-content-center">
+                <h2 class="text-center" style="font-weight: bold;">Opis</h2>
+
+            </div>
+            <div class="row d-flex justify-content-center">
+                <p class="text-justify" style="text-align: justify;">
+                    {{game.description}}
+                </p>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-6">
+            <div class="row d-flex justify-content-start">
+                <app-form-price (shop_game)="onShopGame($event)" [game]="game"></app-form-price>
+            </div>
+            <div class="row">
+                <table class="table">
+
+                    <tbody>
+                        <tr>
+                            <th scope="row">Prosecno trajanje partije </th>
+                            <td>{{game.playtime}}</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Uzrast</th>
+                            <td>{{game.min_age}}+</td>
+
+                        </tr>
+                        <tr>
+                            <th scope="row">Broj igraca </th>
+                            <td>{{game.min_players}}-{{game.max_players}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Kompleksnost </th>
+                            <td>
+                                <ngb-rating [max]="5" [(rate)]="game.complexity" (rateChange)="onRateChanged()"
+                                    [readonly]="true">
+                                    <ng-template let-fill="fill">
+                                        <i class="fa fa-lightbulb-o" [class.filled]="fill === 100"></i>
+                                    </ng-template>
+                                </ngb-rating>
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Mehanika igre </th>
+                            <td>
+                                <ul>
+                                    <li *ngFor="let l of game.mechanics">{{l}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Dizajner </th>
+                            <td>{{game.designer}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Izdavac </th>
+                            <td>{{game.publisher}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

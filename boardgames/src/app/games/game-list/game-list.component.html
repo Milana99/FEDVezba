@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col">
+        <h2 class="fw-bold text-center my-4">Društvene igre</h2>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-3">
+        <form class="form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name">
+
+            </div>
+            <form [formGroup]="form">
+                <div class="form-group">
+                    <label for="cena" class="form-label">Cena od({{form.value.currentValueFrom}} RSD -
+                        {{form.value.currentValueTo}}RSD)</label>
+                    <input formControlName="currentValueFrom" max="{{max_price}}" (change)="onChangePriceFrom($event)"
+                        type="range" min="0" value="0" class="form-range" id="cena">
+                    <input formControlName="currentValueTo" type="range" max="{{max_price}}"
+                        (change)=" onChangePriceTo($event)" value="{{max_price}}" class=" form-range" id="cena">
+
+                </div>
+            </form>
+            <div class="form-check">
+                <input class="form-check-input" (change)="onChangeCheckbox($event)" type="checkbox" value=""
+                    id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Samo dostupno
+                </label>
+            </div>
+        </form>
+    </div>
+    <div class="col-9 ">
+        <div class="row  ">
+            <div class="col-9">
+
+            </div>
+            <div class="col-3">
+                <select class="form-select " (change)="onChangeSort($event)" style="width: 200px;"
+                    aria-label="Default select example">
+                    <option value="">Bez sortiranja</option>
+                    <option value="asc">Cena rastuca</option>
+                    <option value="desc">Cena opadajuca</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-3" *ngFor="let g of game_list.results">
+                <app-game-item [game]="g"></app-game-item>
+            </div>
+        </div>
+    </div>
+</div>

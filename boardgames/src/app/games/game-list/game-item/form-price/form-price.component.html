@@ -1,0 +1,16 @@
+<div class="row">
+    <p *ngIf="game.available_count" class="card-text" style="font-weight: bold;">{{game.price |
+        currency:'':"" }}RSD
+    </p>
+
+    <p *ngIf=" !game.available_count" class="card-text" style="color: red;">Nije dostupno!</p>
+</div>
+<form [formGroup]="form">
+
+    <div class="form-group row">
+        <input formControlName="count" value="1" [min]="1" type="number" style="width: 60px;" class="form-control"
+            id="amountInput">
+        <button [disabled]="!game.available_count" href="#" (click)="onShopGame()" style="width: 50px;"
+            class="btn btn-primary"><span class="fa fa-shopping-cart"></span></button>
+    </div>
+</form>

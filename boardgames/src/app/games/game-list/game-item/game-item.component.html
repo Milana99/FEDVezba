@@ -1,0 +1,9 @@
+<div class="card">
+    <img [routerLink]="['/gameDetails', game.id]" class="card-img-top" src="assets/images/{{game.imageURL}}"
+        alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title text-center">{{game.name}}</h5>
+        <div class="hr" style="border: 1px solid gray;"></div>
+        <app-form-price class=" text-center" (shop_game)="onShopGame($event)" [game]="game"></app-form-price>
+    </div>
+</div>
